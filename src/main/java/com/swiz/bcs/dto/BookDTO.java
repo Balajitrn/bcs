@@ -1,14 +1,14 @@
 package com.swiz.bcs.dto;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
 
 @Getter
 @Setter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class BookDTO {
     private String title;
     private Long authorId;
