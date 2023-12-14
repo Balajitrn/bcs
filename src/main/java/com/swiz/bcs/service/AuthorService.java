@@ -3,6 +3,7 @@ package com.swiz.bcs.service;
 
 import com.swiz.bcs.dto.AuthorDTO;
 import com.swiz.bcs.entity.Author;
+import com.swiz.bcs.exception.AuthorNotFoundException;
 import com.swiz.bcs.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,8 @@ public class AuthorService {
     }
 
     public Author findAuthorById(Long id) {
-        return authorRepository.findById(id).orElse(null);
+        return authorRepository.findById(id)
+                .orElseThrow(() -> new AuthorNotFoundException("Author not found with ID: "+id));
     }
 
     // Other author-related operations

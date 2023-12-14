@@ -1,5 +1,6 @@
 package com.swiz.bcs.controller;
 
+import com.swiz.bcs.exception.AuthorNotFoundException;
 import com.swiz.bcs.exception.BookNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,10 @@ public class GlobalControllerAdvice {
 
     @ExceptionHandler(BookNotFoundException.class)
     public ResponseEntity<String> handleBookNotFoundException(BookNotFoundException e){
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(AuthorNotFoundException.class)
+    public ResponseEntity<String> handleAuthorNotFoundException(AuthorNotFoundException e){
         return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
     }
 
